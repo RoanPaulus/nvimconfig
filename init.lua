@@ -602,6 +602,3 @@ cmp.setup {
         { name = 'luasnip' },
     },
 }
-
--- LuaSnip custom configuration
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/luasnip" })
