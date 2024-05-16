@@ -17,9 +17,11 @@ return {
 			end)(),
 			dependencies = {
 				{
-					"rafamadriz/friendly-snippets",
+					"roan-paulus/friendly-snippets",
 					config = function()
-						require("luasnip.loaders.from_vscode").lazy_load()
+						require("luasnip.loaders.from_vscode").lazy_load({
+							paths = { "~/.local/share/nvim/lazy/friendly-snippets/" },
+						})
 					end,
 				},
 			},
@@ -37,6 +39,16 @@ return {
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")
 		luasnip.config.setup({})
+
+		-- Add html snippets to react
+		local reactLanguages = {
+			"javascriptreact",
+			"typescriptreact",
+		}
+		for _, lang in ipairs(reactLanguages) do
+			print(lang)
+			luasnip.filetype_extend(lang, { "html" })
+		end
 
 		cmp.setup({
 			snippet = {
