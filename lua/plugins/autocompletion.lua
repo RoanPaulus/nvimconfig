@@ -76,7 +76,6 @@ return {
 				--  This will auto-import if your LSP supports it.
 				--  This will expand snippets if the LSP sent a snippet.
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
-
 				["<C-Space>"] = cmp.mapping.complete({}),
 
 				-- Think of <c-l> as moving to the right of your snippet expansion.
@@ -87,6 +86,8 @@ return {
 				--
 				-- <c-l> will move you to the right of each of the expansion locations.
 				-- <c-h> is similar, except moving you backwards.
+				--
+				--
 				["<C-l>"] = cmp.mapping(function()
 					if luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
