@@ -56,12 +56,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagn
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Window movement
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Jump to window on the left" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Jump to window below" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Jump to window on the right" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Jump to window upwards" })
-
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
