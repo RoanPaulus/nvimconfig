@@ -14,6 +14,13 @@ return {
 		-- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
 		{ "folke/neodev.nvim", opts = {} },
+
+		-- Rust tools for debugger/lsp and formatters
+		{
+			"mrcjkb/rustaceanvim",
+			version = "^4", -- Recommended
+			lazy = false, -- This plugin is already lazy
+		},
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -127,6 +134,7 @@ return {
 					Lua = {
 						workspace = {
 							checkThirdParty = false,
+							-- Make sure love2d is able to be found by the lsp
 							library = { "${3rd}/love2d/library" },
 						},
 						telemetry = { enable = false },
@@ -150,8 +158,8 @@ return {
 
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format Lua code
-			"rust-analyzer",
+			"stylua", -- lua formatter
+			-- "rustfmt", Deprecated, install via rustup instead
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
