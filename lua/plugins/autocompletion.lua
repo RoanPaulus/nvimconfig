@@ -46,7 +46,6 @@ return {
 			"typescriptreact",
 		}
 		for _, lang in ipairs(reactLanguages) do
-			print(lang)
 			luasnip.filetype_extend(lang, { "html" })
 		end
 
