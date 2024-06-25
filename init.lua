@@ -1,6 +1,6 @@
 vim.g.python3_host_prog = "/usr/bin/python3.12"
 
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+-- NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -21,8 +21,6 @@ vim.opt.relativenumber = true
 
 -- Other
 vim.opt.mouse = "a"
-
-vim.opt.showmode = false
 
 vim.opt.breakindent = true
 vim.opt.undofile = true
@@ -50,11 +48,32 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.hlsearch = true
 
--- Diagnostic keymaps
+-- [[ Keymaps ]]
+-- Diagnostic
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- Rust
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "rust",
+	callback = function(_)
+		vim.keymap.set("n", "<F5>", ":split term://cargo run<CR>", { desc = "Compile and run rust project" })
+	end,
+})
+
+-- Other
+-- Make sure autocommand will fire when using ctrl-c to go to normal mode
+vim.keymap.set("i", "<C-c>", "<Esc>")
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	callback = function(_)
+		vim.opt_local.number = false
+		vim.opt_local.relativenumber = false
+		vim.cmd("normal i")
+	end,
+})
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
