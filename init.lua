@@ -59,7 +59,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "rust",
 	callback = function(_)
-		vim.keymap.set("n", "<F5>", ":split term://cargo run<CR>", { desc = "Compile and run rust project" })
+		vim.keymap.set("n", "<F6>", ":split term://cargo run<CR>", { desc = "Compile and run rust project" })
 	end,
 })
 
