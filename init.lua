@@ -63,6 +63,14 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+-- Lua
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "lua",
+	callback = function(_)
+		vim.keymap.set("n", "<F5>", ":split term://love .<CR>", { desc = "Run love 2d game" })
+	end,
+})
+
 -- Other
 -- Make sure autocommand will fire when using ctrl-c to go to normal mode
 vim.keymap.set("i", "<C-c>", "<Esc>")

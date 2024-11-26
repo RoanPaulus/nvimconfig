@@ -63,18 +63,19 @@ return {
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete({}),
 
-				["<C-j>"] = cmp.mapping(function()
+				["<C-l>"] = cmp.mapping(function()
 					if luasnip.expand_or_locally_jumpable() then
 						luasnip.expand_or_jump()
 					end
 				end, { "i", "s" }),
-				["<C-k>"] = cmp.mapping(function()
+				["<C-h>"] = cmp.mapping(function()
 					if luasnip.locally_jumpable(-1) then
 						luasnip.jump(-1)
 					end
 				end, { "i", "s" }),
 			}),
 			sources = {
+				-- Comment out next line to disable lsp completion.
 				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
 				{ name = "path" },

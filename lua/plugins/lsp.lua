@@ -18,13 +18,33 @@ return {
 		-- Rust tools for debugger/lsp and formatters
 		{
 			"mrcjkb/rustaceanvim",
-			version = "^4", -- Recommended
+			version = "^4",
 			lazy = false, -- This plugin is already lazy
+			init = function()
+				vim.g.rustaceanvim = {
+					-- Plugin configuration
+					tools = {
+						enable_clippy = false,
+					},
+					-- LSP configuration
+					server = {
+						on_attach = function(client, bufnr)
+							-- you can also put keymaps in here
+						end,
+						default_settings = {
+							["rust-analyzer"] = {},
+						},
+					},
+					-- DAP configuration
+					dap = {},
+				}
+			end,
 		},
 	},
 	config = function()
 		vim.diagnostic.config({
 			underline = false,
+			virtual_text = false,
 		})
 
 		vim.api.nvim_create_autocmd("LspAttach", {
