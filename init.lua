@@ -83,6 +83,16 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	end,
 })
 
+function open_vscode()
+	local pos = vim.fn.getpos(".")
+	local file = vim.api.nvim_buf_get_name(pos[1])
+	local lnum = pos[2]
+	local col = pos[3]
+	vim.cmd(string.format("!code --goto %s:%s:%s", file, lnum, col))
+end
+
+vim.keymap.set("n", "<leader>vs", open_vscode, { desc = "Open vscode on current line and character" })
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
